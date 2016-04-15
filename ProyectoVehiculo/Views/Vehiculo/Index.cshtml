@@ -56,6 +56,7 @@
                     @if (Session["rol"].Equals(2))
                     {//Estudiante rol 2
                         <p>@Html.ActionLink("Solicitar", "Create", "VentaVehiculo", new { idVehiculo = item.idVehiculo }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</p>
+                        <p>@Html.ActionLink("Reservar", "Create", "VentaVehiculo", new { idVehiculo = item.idVehiculo }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</p>
                     }
                     @if (Session["rol"].Equals(1))
                     {//Administrador rol 1

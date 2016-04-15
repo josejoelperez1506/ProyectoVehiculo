@@ -17,7 +17,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Autoventas Car´s", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (Session["nombreUsuario"] == null)
+                {
+                    @Html.ActionLink("Login", "Login", "Cuenta", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("API", "Home", "Index", new { area = "" }, new { @class = "navbar-brand" })
+                }
             </div>
             @if (Session["IDUsuario"] != null)
             {

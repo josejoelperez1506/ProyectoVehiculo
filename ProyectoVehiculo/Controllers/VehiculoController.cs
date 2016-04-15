@@ -32,6 +32,12 @@ namespace ProyectoVehiculo.Controllers
             return View(vehiculo.ToList());
         }
 
+        public ActionResult Listar()
+        {
+            var vehiculo = db.vehiculo.Include(v => v.combustible).Include(v => v.estado).Include(v => v.marca).Include(v => v.tipoVehiculo);
+            return View(vehiculo.ToList());
+        }
+
         public ActionResult Busqueda(string modelo, string validar, string tipoVehiculo) {
             var Gmodelo = new List<string>();
             var Gtodo = from v in db.vehiculo
