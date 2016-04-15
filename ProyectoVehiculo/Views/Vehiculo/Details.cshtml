@@ -1,0 +1,83 @@
+﻿@model ProyectoVehiculo.Models.Vehiculo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vehiculo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @if (Model.archivos.Any(arch => arch.tipo == ProyectoVehiculo.Models.FileType.Imagen))
+        {
+            <dt>
+                Imagen
+            </dt>
+            <dd>
+                <img src="~/Archivo/Oarchivo?id=@Model.archivos.First(f => f.tipo== ProyectoVehiculo.Models.FileType.Imagen).idArchivo" alt="imagen" />
+            </dd>
+        }
+        <dt>
+            @Html.DisplayNameFor(model => model.combustible.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.combustible.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.estado.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.estado.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marca.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marca.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoVehiculo.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoVehiculo.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modelo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idVehiculo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

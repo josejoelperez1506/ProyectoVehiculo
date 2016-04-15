@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProyectoVehiculo.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idTipoVehiculo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idMarca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idCombustible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idEstado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.modelo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idTipoVehiculo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idMarca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCombustible)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.modelo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idVehiculo }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idVehiculo }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idVehiculo })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ProyectoVehiculo.Models.Vehiculo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page-header">
+    <h1>Listado de Vehiculos</h1>
+</div>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button> <a class="navbar-brand" href="#">Filtrar Modelos</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            @using (Html.BeginForm("Index", "Vehiculo", FormMethod.Get, new { @class = "navbar-form navbar-left", @role = "busqueda" }))
+            {
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Busqueda" name="busqueda">
+                </div>
+                <button type="submit" class="btn btn-default">Buscar</button>
+            }
+            
+            @Html.ActionLink("Ordenar Z-A o A-Z", "Index", new { ordenFiltro = ViewBag.ordenarNombre }, new { @class = "btn btn-default navbar-btn" })
+        </div>
+    </div>
+</nav>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+
+        <div class="col-sm-4 col-md-3">
+            <div class="thumbnail">
+                @if (item.archivos.Any(f => f.tipo == ProyectoVehiculo.Models.FileType.Imagen))
+                {
+                    <img src="~/Archivo/Oarchivo?id=@item.archivos.First(f => f.tipo == ProyectoVehiculo.Models.FileType.Imagen).idArchivo" alt="imagen" />
+                }
+                <div class="caption">
+                    <h3>@Html.DisplayFor(valor => item.marca.nombre)</h3>
+                    <p>
+                        <strong>Marca: </strong>@Html.DisplayFor(valor => item.tipoVehiculo.tipo) <br />
+                        <strong>Combustible: </strong>@Html.DisplayFor(valor => item.combustible.nombre) <br />
+                        <strong>Estado: </strong>@Html.DisplayFor(valor => item.estado.nombre) <br />
+                        <strong>Precio: </strong>@Html.DisplayFor(valor => item.precio) <br />
+                        <strong>Modelo: </strong>@Html.DisplayFor(valor => item.modelo) <br />
+                    </p>
+                    @if (Session["rol"].Equals(2))
+                    {//Estudiante rol 2
+                        <p>@Html.ActionLink("Solicitar", "Create", "VentaVehiculo", new { idVehiculo = item.idVehiculo }, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })</p>
+                    }
+                    @if (Session["rol"].Equals(1))
+                    {//Administrador rol 1
+                        <p>
+                            <hr />
+                            @Html.ActionLink("Editar", "Edit", new { id = item.idVehiculo }) |
+                            @Html.ActionLink("Detalles", "Details", new { id = item.idVehiculo }) |
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.idVehiculo })
+                        </p>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    }
+</div>

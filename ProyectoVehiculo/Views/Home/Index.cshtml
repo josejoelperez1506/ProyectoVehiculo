@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@if (Session["nombreUsuario"] != null)
+{
+    <h2>Bienvenido @Session["nombreUsuario"]</h2>
+    //-------------------------------------
+    <div class="row">
+        <div class="col-sm-4" col-md-4>
+            <div class="thumbnail">
+                <img src="..." alt="...">
+                <div class="caption">
+                    <img src="~/Imagenes/VentaVehiculo (Custom).png" />
+                    <h3>Compras</h3>
+                    <p>En esta opción puede comprar carros</p>
+                    <p>@Html.ActionLink("Ver compras", "Index", "VentaVehiculo", new { area = "" }, new { @class = "btn btn-primary" })</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4" col-md-4>
+            <div class="thumbnail">
+                <img src="..." alt="...">   
+                <div class="caption">
+                    <img src="~/Imagenes/Auto (Custom).png" />
+                    <h3>Vehiculos</h3>
+                    <p>En esta opción puede comprar carros</p>
+                    <p>@Html.ActionLink("Ver vehiculos", "Index", "Vehiculo", new { area = "" }, new { @class = "btn btn-primary" })</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4" col-md-4>
+            <div class="thumbnail">
+                <img src="..." alt="...">
+                <div class="caption">
+                    <img src="~/Imagenes/Usuario (Custom).jpg" />
+                    <h3>Usuarios</h3>
+                    <p>En esta opción puede comprar carros</p>
+                    <p>@Html.ActionLink("Ver usuarios", "", "Cuenta", new { area = "" }, new { @class = "btn btn-primary" })</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    //-------------------------------------
+}
+else
+{
+    <h2>Por favor inicie sesión</h2>
+}
